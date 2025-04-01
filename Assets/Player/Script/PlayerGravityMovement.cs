@@ -14,12 +14,20 @@ public class PlayerGravityMovement : MonoBehaviour
 
 
     private InputSystem_Actions inputSystem_Actions;
-    private InputAction moveAction;
+    private InputAction moveAction => inputSystem_Actions.PlayerGravity.Move;
 
     private void OnValidate()
     {
-        playerDataManager = GetComponent<PlayerDataManager>();
-        rb = GetComponent<Rigidbody>();
+
+        if (playerDataManager == null)
+        {
+            playerDataManager = GetComponent<PlayerDataManager>();
+        }
+
+        if (rb == null)
+        {
+            rb = GetComponentInParent<Rigidbody>();
+        }
     }
 
     private void Awake()
@@ -29,28 +37,32 @@ public class PlayerGravityMovement : MonoBehaviour
 
         inputSystem_Actions = new InputSystem_Actions();
 
+        inputSystem_Actions.PlayerGravity.Move.performed += Move_performed;
+        inputSystem_Actions.PlayerGravity.Move.canceled += Move_canceled;
+    }
+
+    private void Move_canceled(InputAction.CallbackContext obj)
+    {
+        moveDir = moveAction.ReadValue<Vector2>();
+    }
+
+    private void Move_performed(InputAction.CallbackContext obj)
+    {
+        moveDir = moveAction.ReadValue<Vector2>();
     }
 
     private void OnEnable()
     {
-        moveAction = inputSystem_Actions.Player.Move;
         moveAction.Enable();
     }
 
     private void OnDisable()
     {
-        moveAction = inputSystem_Actions.Player.Move;
         moveAction.Disable();
     }
 
-/*    private void OnMove(InputAction.CallbackContext context)
-    {
-        moveDir = context.ReadValue<Vector2>();
-    }*/
-
     private void FixedUpdate()
     {
-        moveDir = moveAction.ReadValue<Vector2>();
         playerVel = new Vector3(moveDir.x * moveSpeed, rb.linearVelocity.y, moveDir.y * moveSpeed);
         rb.linearVelocity = transform.TransformDirection(playerVel);
     }

@@ -5,6 +5,7 @@ public class PlayerSO : ScriptableObject
 {
     [Header("general values")]
     public int hp;
+    public float cameraSensitivity;
     //public float heightOfCharacter
     //public float reachOfCharacter
 

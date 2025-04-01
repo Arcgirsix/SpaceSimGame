@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BasePlayer
   m_EditorClassIdentifier: 
   hp: 100
+  cameraSensitivity: 10
   gravMoveSpeed: 10
   gravSprintSpeed: 10
   jumpHeight: 10

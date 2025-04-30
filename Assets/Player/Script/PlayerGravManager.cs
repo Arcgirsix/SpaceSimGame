@@ -49,12 +49,11 @@ public class PlayerGravManager : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
             playerTransform.rotation = new Quaternion(0f, playerTransform.rotation.y, 0f, 0f);
-            return;
         }
-        if (_isGravityOn == false)
+        if (!_isGravityOn)
         {
             rb.constraints = RigidbodyConstraints.None;
-            return;
+            playerTransform.rotation = new Quaternion(0f, playerTransform.rotation.y, 0f, 0f);
         }
     }
 }

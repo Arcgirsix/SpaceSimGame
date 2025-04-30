@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerNoGravityMovement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rb;
+    /*[SerializeField] private Rigidbody rb;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float sprintSpeed;
     private Vector3 moveDir;
@@ -65,24 +65,11 @@ public class PlayerNoGravityMovement : MonoBehaviour
     {
         moveAction.Disable();
     }
-/*
-    private void Update()
-    {
-        if (inputSystem_Actions.PlayerNoGravity.Move.trig())
-        {
-            moveDir = inputSystem_Actions.PlayerNoGravity.Move.ReadValue<Vector2>();
-        }
-    }*/
-
-    /*    private void OnMove(InputAction.CallbackContext context)
-        {
-            moveDir = context.ReadValue<Vector2>();
-        }*/
 
     private void FixedUpdate()
     {
     
         playerVel = new Vector3(moveDir.x * moveSpeed, moveDir.y * moveSpeed, moveDir.z * moveSpeed );
         rb.linearVelocity = playerHeadPivot.TransformDirection(playerVel);
-    }
+    }*/
 }

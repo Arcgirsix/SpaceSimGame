@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerNoGravityCamera : MonoBehaviour
 {
-    [Header("gen param")]
+    /*[Header("gen param")]
     [SerializeField] private PlayerDataManager playerDataManager;
     [SerializeField] private Transform playerHeadPivot;
 
@@ -99,5 +99,5 @@ public class PlayerNoGravityCamera : MonoBehaviour
         zRotation -= roll;
 
         playerHeadPivot.localRotation = Quaternion.Euler(verticalRotation, horizontalRotation, zRotation);
-    }
+    }*/
 }
